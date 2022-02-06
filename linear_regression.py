@@ -49,7 +49,26 @@ class LinearRegression:
         return s
 
     def compute_cost(self, x, y):
-        pass
+        """
+        calculates the output of the model and the cost of output compares to desired output
+
+        Parameters
+        ----------
+        x : nd.array
+            input vector
+        y : nd.array
+            label vector
+
+        Returns
+        -------
+        sigma : float
+            output
+        cost : float
+            the cost of the output compares to the label vector
+        """
+        sigma = self.sigmoid(np.dot(self.weights, x.T) + self.bias)
+        cost = - (1 / x.shape[0]) * np.sum(np.dot(y, np.log(sigma).T) + np.dot((1 - y), np.log(1 - sigma).T))
+        return sigma, cost
 
     def gradient_descent(self):
         pass
