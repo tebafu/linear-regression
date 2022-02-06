@@ -7,12 +7,29 @@ class LinearRegression:
 
     """
     def __init__(self, dimension):
+        """
+        Initialization of the model
+
+        Parameters
+        ----------
+        dimension : int
+            dimension of the model
+        """
+        self.bias = None
+        self.weights = None
         self.dimension = dimension
         self.initialize_weights()
 
     def initialize_weights(self):
-        weights = np.zeros((1, self.dimension))
-        bias = 0
+        """
+        Sets all the weights and bias to zeros
+
+        Returns
+        -------
+
+        """
+        self.weights = np.zeros((1, self.dimension))
+        self.bias = 0
 
     # noinspection PyMethodMayBeStatic
     def sigmoid(self, x):
@@ -31,7 +48,7 @@ class LinearRegression:
         s = 1.0 / (1.0 + np.exp(-x))
         return s
 
-    def compute_cost(self):
+    def compute_cost(self, x, y):
         pass
 
     def gradient_descent(self):
