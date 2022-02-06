@@ -6,11 +6,13 @@ class LinearRegression:
     A linear regression model
 
     """
-    def __init__(self):
-        pass
+    def __init__(self, dimension):
+        self.dimension = dimension
+        self.initialize_weights()
 
     def initialize_weights(self):
-        pass
+        weights = np.zeros((1, self.dimension))
+        bias = 0
 
     # noinspection PyMethodMayBeStatic
     def sigmoid(self, x):
