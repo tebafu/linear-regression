@@ -70,8 +70,26 @@ class LinearRegression:
         cost = - (1 / x.shape[0]) * np.sum(np.dot(y, np.log(sigma).T) + np.dot((1 - y), np.log(1 - sigma).T))
         return sigma, cost
 
-    def gradient_descent(self):
-        pass
+    def gradient_descent(self, x, y, sigma):
+        """
+        calculates the gradients of the weights with respect to the loss of the model
+
+        Parameters
+        ----------
+        x : nd.array
+            input vector
+        y : nd.array
+            label vector
+        sigma : nd.array
+            model output
+
+        Returns
+        -------
+        gradients for the weights and the bias
+        """
+        dw = 1/x.shape[0] * np.dot((sigma - y), x)
+        db = 1 / x.shape[0] * np.sum(sigma - y)
+        return dw, db
 
     def update_weights(self):
         pass
