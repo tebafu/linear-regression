@@ -6,7 +6,7 @@ class LinearRegression:
     A linear regression model
 
     """
-    def __init__(self, dimension):
+    def __init__(self, dimension, iterations, learning_rate):
         """
         Initialization of the model
 
@@ -18,6 +18,8 @@ class LinearRegression:
         self.bias = None
         self.weights = None
         self.dimension = dimension
+        self.iterations = iterations
+        self.learning_rate = learning_rate
         self.initialize_weights()
 
     def initialize_weights(self):
@@ -91,8 +93,25 @@ class LinearRegression:
         db = 1 / x.shape[0] * np.sum(sigma - y)
         return dw, db
 
-    def update_weights(self):
-        pass
+    def update_weights(self, x, y):
+        """
+        Updates the weights of the model
+
+        Parameters
+        ----------
+        x : nd.array
+            input vector
+        y : nd.array
+            label vector
+
+        """
+        for i in range(self.iterations):
+            sigma, cost = self.compute_cost(x, y)
+            dw, db = self.gradient_descent(x, y, sigma)
+            self.weights = self.weights - self.learning_rate * dw
+            self.bias = self.bias - self.learning_rate * db
+            if i % 100 == 0:
+                print("Cost after iteration %i: %f" % (i, cost))
 
     def fit(self):
         pass
