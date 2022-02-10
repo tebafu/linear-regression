@@ -104,16 +104,18 @@ class LinearRegression:
         y : nd.array
             label vector
 
+        Returns
+        -------
+        cost : float
+            returns the cost of the current performance of the model
         """
-        for i in range(self.iterations):
-            sigma, cost = self.compute_cost(x, y)
-            dw, db = self.gradient_descent(x, y, sigma)
-            self.weights = self.weights - self.learning_rate * dw
-            self.bias = self.bias - self.learning_rate * db
-            if i % 100 == 0:
-                print("Cost after iteration %i: %f" % (i, cost))
+        sigma, cost = self.compute_cost(x, y)
+        dw, db = self.gradient_descent(x, y, sigma)
+        self.weights = self.weights - self.learning_rate * dw
+        self.bias = self.bias - self.learning_rate * db
+        return cost
 
-    def fit(self):
+    def fit(self, x, y):
         pass
 
     def predict(self, x):
