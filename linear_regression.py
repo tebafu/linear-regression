@@ -116,5 +116,20 @@ class LinearRegression:
     def fit(self):
         pass
 
-    def predict(self):
-        pass
+    def predict(self, x):
+        """
+        Makes a predictions on a nd.array based on the weights and the bias of the model
+
+        Parameters
+        ----------
+        x : nd.array
+            input vector
+
+        Returns
+        -------
+        predictions : nd.array
+            return the predictions of the model
+        """
+        sigma = self.sigmoid(np.dot(self.weights, x.T) + self.bias)
+        predictions = np.around(sigma)
+        return predictions
