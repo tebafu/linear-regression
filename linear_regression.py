@@ -116,7 +116,21 @@ class LinearRegression:
         return cost
 
     def fit(self, x, y):
-        pass
+        """
+        Fits the model on the given data set and prints the performance of the model every 100 iterations
+
+        Parameters
+        ----------
+        x : nd.array
+            input vector
+        y : nd.array
+            label vector
+
+        """
+        for i in range(self.iterations):
+            cost = self.update_weights(x, y)
+            if i % 100 == 0:
+                print("Cost after iteration %i: %f" % (i, cost))
 
     def predict(self, x):
         """
